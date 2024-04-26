@@ -1,0 +1,41 @@
+CREATE TABLE persons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+    
+INSERT INTO persons (name, age) VALUES ("Jacob Stewart", 64);
+INSERT INTO persons (name, age) VALUES ("Cooper Gordon", 74);
+INSERT INTO persons (name, age) VALUES ("Jack Phillips", 59);
+INSERT INTO persons (name, age) VALUES ("Phil Hopkins", 70);
+INSERT INTO persons (name, age) VALUES ("Joseph Valencia", 68);
+
+CREATE table strategies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    name TEXT);
+    
+INSERT INTO strategies (person_id, name) VALUES (1, "passive income");
+INSERT INTO strategies (person_id, name) VALUES (1, "growth investing");
+INSERT INTO strategies (person_id, name) VALUES (2, "dividend income");
+INSERT INTO strategies (person_id, name) VALUES (2, "speculative ");
+INSERT INTO strategies (person_id, name) VALUES (3, "retirement");
+INSERT INTO strategies (person_id, name) VALUES (3, "retirement");
+INSERT INTO strategies (person_id, name) VALUES (3, "growth investing");
+INSERT INTO strategies (person_id, name) VALUES (4, "dividend income");
+INSERT INTO strategies (person_id, name) VALUES (4, "retirement");
+INSERT INTO strategies (person_id, name) VALUES (4, "speculative");
+
+INSERT INTO persons (name, age) values ('Jack' , 50);
+INSERT INTO strategies (person_id, name) values (5, 'investing');
+
+-- display person's name and their strategies
+SELECT persons.name, strategies.name FROM persons
+    JOIN strategies
+    ON strategies.person_id = persons.id;
+
+-- display only Bpbby McBobbyFace's hobbbies 
+SELECT persons.name, hobbies.name FROM persons
+    JOIN strategies
+    ON strategies.person_id = persons.id
+    WHERE persons.name = "Phil Hopkins";
+    
