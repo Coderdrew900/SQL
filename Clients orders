@@ -1,0 +1,36 @@
+CREATE TABLE client (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT);
+    
+INSERT INTO client (name, email) VALUES ("Christopher Edwards", "chrisnetwork249@gmail.com");
+INSERT INTO client (name, email) VALUES ("Thomas White", "thomaswhite@gmail.com");
+INSERT INTO client (name, email) VALUES ("Benjamin Paterson", "captainp@gmail.com");
+
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    client_id INTEGER,
+    item TEXT,
+    price REAL);
+
+INSERT INTO orders (client_id, item, price)
+    VALUES (1, "AAPL", 100000.00);
+INSERT INTO orders (client_id, item, price)
+    VALUES (2, "PLTR", 40000.00);
+INSERT INTO orders (client_id, item, price)
+    VALUES (1, "TSLA", 10000.00);
+    
+    
+ -- display client's even if they have not made an order using JOINS     
+SELECT client.name, client.email, orders.item, orders.price
+FROM clients
+LEFT OUTER JOIN orders
+ON client.id = orders.client_id;
+
+-- display client's sum of orders even if they have not made any orders using JOINS 
+SELECT client.name, client.email, SUM(orders.price) AS "total" 
+FROM clients
+LEFT OUTER JOIN orders
+ON clients.id = orders.client_id
+GROUP BY clients.id
+ORDER BY orders.price DESC; 
